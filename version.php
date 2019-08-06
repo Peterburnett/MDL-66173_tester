@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Tester plugin for MDL-66123 
+ * Tester plugin for MDL-66173 
  *
- * @package    tool_passwordchangetester
+ * @package    tool_loginhooktester
  * @copyright  2019 Peter Burnett <peterburnett@catalyst-au.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

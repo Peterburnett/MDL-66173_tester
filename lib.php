@@ -15,15 +15,64 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- *  Tester plugin for MDL-66123 
+ *  Tester plugin for MDL-66173 
  *
- * @package    tool_passwordchangetester
+ * @package    tool_loginhooktester
  * @copyright  2019 Peter Burnett <peterburnett@catalyst-au.net>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die;
 
-function tool_passwordchangetester_check_password_policy($password, $user) {
-    return $user->username;
+// ========================================FORM HOOKS===============================================
+
+function tool_loginhooktester_extend_change_password_form($mform, $user) {
+    // Inject static text of the username passed to it
+    $mform->addElement('static', 'injectedstatic', $user->username);
+
+    // Inject text element to test validation
+    $mform->addElement('text', 'injectedtext', get_string('extendform', 'tool_loginhooktester'));
+}
+
+function tool_loginhooktester_extend_forgot_password_form($mform, $user) {
+    // Inject static text of the username passed to it
+    $mform->addElement('static', 'injectedstatic', $user->username);
+
+    // Inject text element to test validation
+    $mform->addElement('text', 'injectedtext', get_string('extendform', 'tool_loginhooktester'));
+}
+
+function tool_loginhooktester_extend_set_password_form($mform, $user) {
+    // Inject static text of the username passed to it
+    $mform->addElement('static', 'injectedstatic', $user->username);
+
+    // Inject text element to test validation
+    $mform->addElement('text', 'injectedtext', get_string('extendform', 'tool_loginhooktester'));
+}
+
+function tool_loginhooktester_extend_signup_form($mform) {
+    // Inject text element to test validation
+    $mform->addElement('text', 'injectedtext', get_string('extendform', 'tool_loginhooktester'));
+}
+
+// ========================================VALIDATION HOOKS=========================================
+
+function tool_loginhooktester_extend_change_password_validation($data, $errors, $user) {
+    $errors['injectedtext'] = ('Input: '.$data['injectedtext'].', Username: '.$user->username);
+    return $errors;
+}
+
+function tool_loginhooktester_extend_forgot_password_validation($data, $errors, $user) {
+    $errors['injectedtext'] = ('Input: '.$data['injectedtext'].', Username: '.$user->username);
+    return $errors;
+}
+
+function tool_loginhooktester_extend_set_password_validation($data, $errors, $user) {
+    $errors['injectedtext'] = ('Input: '.$data['injectedtext'].', Username: '.$user->username);
+    return $errors;
+}
+
+function tool_loginhooktester_extend_signup_validation($data, $errors, $user) {
+    $errors['injectedtext'] = ('Input: '.$data['injectedtext']);
+    return $errors;
 }
 
