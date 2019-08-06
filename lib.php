@@ -33,10 +33,7 @@ function tool_loginhooktester_extend_change_password_form($mform, $user) {
     $mform->addElement('text', 'injectedtext', get_string('extendform', 'tool_loginhooktester'));
 }
 
-function tool_loginhooktester_extend_forgot_password_form($mform, $user) {
-    // Inject static text of the username passed to it
-    $mform->addElement('static', 'injectedstatic', $user->username);
-
+function tool_loginhooktester_extend_forgot_password_form($mform) {
     // Inject text element to test validation
     $mform->addElement('text', 'injectedtext', get_string('extendform', 'tool_loginhooktester'));
 }
@@ -61,8 +58,8 @@ function tool_loginhooktester_extend_change_password_validation($data, $errors, 
     return $errors;
 }
 
-function tool_loginhooktester_extend_forgot_password_validation($data, $errors, $user) {
-    $errors['injectedtext'] = ('Input: '.$data['injectedtext'].', Username: '.$user->username);
+function tool_loginhooktester_extend_forgot_password_validation($data, $errors) {
+    $errors['injectedtext'] = ('Input: '.$data['injectedtext']);
     return $errors;
 }
 
