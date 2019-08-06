@@ -69,7 +69,7 @@ function tool_loginhooktester_extend_set_password_validation($data, $errors, $us
     return $errors;
 }
 
-function tool_loginhooktester_extend_signup_validation($data, $errors, $user) {
+function tool_loginhooktester_extend_signup_validation($data, $errors) {
     $errors['injectedtext'] = ('Input: '.$data['injectedtext']);
     return $errors;
 }
