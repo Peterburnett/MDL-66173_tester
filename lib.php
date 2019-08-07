@@ -91,23 +91,23 @@ function tool_loginhooktester_extend_signup_validation($data, $errors) {
 }
 
 function tool_loginhooktester_post_change_password_requests($data) {
-    echo 'Input: '.$data['injectedtext'];
-    sleep(10);
+    $message = ('post_change_password_request - Input: '.$data->injectedtext);
+    echo "<script type='text/javascript'>alert('$message');</script>";
 }
 
 function tool_loginhooktester_post_set_password_requests($data) {
-    echo 'Input: '.$data['injectedtext'];
-    sleep(10);
+    $message = ('post_change_password_request - Input: '.$data->injectedtext);
+    echo "<script type='text/javascript'>alert('$message');</script>";
 }
 
 function tool_loginhooktester_post_forgot_password_requests($data) {
-    echo 'Input: '.$data['injectedtext'];
-    sleep(10);
+    $message = ('post_change_password_request - Input: '.$data->injectedtext);
+    echo "<script type='text/javascript'>alert('$message');</script>";
 }
 
 function tool_loginhooktester_post_signup_requests($data) {
-    echo 'Input: '.$data['injectedtext'];
-    sleep(10);
+    $message = ('post_change_password_request - Input: '.$data->injectedtext);
+    echo "<script type='text/javascript'>alert('$message');</script>";
 }
 
 
