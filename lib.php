@@ -98,6 +98,7 @@ function tool_loginhooktester_post_change_password_requests($data) {
 function tool_loginhooktester_post_set_password_requests($data) {
     $message = ('post_set_password_request - Input: '.$data->injectedtext);
     echo "<script type='text/javascript'>alert('$message');</script>";
+    die;
 }
 
 function tool_loginhooktester_post_forgot_password_requests($data) {
