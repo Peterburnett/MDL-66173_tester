@@ -55,22 +55,60 @@ function tool_loginhooktester_extend_signup_form($mform) {
 // ========================================VALIDATION HOOKS=========================================
 
 function tool_loginhooktester_extend_change_password_validation($data, $errors, $user) {
-    $errors['injectedtext'] = ('Input: '.$data['injectedtext'].', Username: '.$user->username);
-    return $errors;
+    if ($data['injectedtext'] != 'test') { 
+        $errors['injectedtext'] = ('Input: '.$data['injectedtext'].', Username: '.$user->username);
+        return $errors;
+    } else {
+        return $errors;
+    }
 }
 
 function tool_loginhooktester_extend_forgot_password_validation($data, $errors) {
-    $errors['injectedtext'] = ('Input: '.$data['injectedtext']);
-    return $errors;
+    if ($data['injectedtext'] != 'test') { 
+        $errors['injectedtext'] = ('Input: '.$data['injectedtext']);
+        return $errors;
+    } else {
+        return $errors;
+    }
 }
 
 function tool_loginhooktester_extend_set_password_validation($data, $errors, $user) {
-    $errors['injectedtext'] = ('Input: '.$data['injectedtext'].', Username: '.$user->username);
-    return $errors;
+    if ($data['injectedtext'] != 'test') { 
+        $errors['injectedtext'] = ('Input: '.$data['injectedtext'].', Username: '.$user->username);
+        return $errors;
+    } else {
+        return $errors;
+    }
 }
 
 function tool_loginhooktester_extend_signup_validation($data, $errors) {
-    $errors['injectedtext'] = ('Input: '.$data['injectedtext']);
-    return $errors;
+    if ($data['injectedtext'] != 'test') { 
+        $errors['injectedtext'] = ('Input: '.$data['injectedtext']);
+        return $errors;
+    } else {
+        return $errors;
+    }
 }
+
+function tool_loginhooktester_post_change_password_requests($data) {
+    echo 'Input: '.$data['injectedtext'];
+    sleep(10);
+}
+
+function tool_loginhooktester_post_set_password_requests($data) {
+    echo 'Input: '.$data['injectedtext'];
+    sleep(10);
+}
+
+function tool_loginhooktester_post_forgot_password_requests($data) {
+    echo 'Input: '.$data['injectedtext'];
+    sleep(10);
+}
+
+function tool_loginhooktester_post_signup_requests($data) {
+    echo 'Input: '.$data['injectedtext'];
+    sleep(10);
+}
+
+
 
