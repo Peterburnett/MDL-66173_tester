@@ -31,12 +31,14 @@ function tool_loginhooktester_extend_change_password_form($mform, $user) {
 
     // Inject text element to test validation
     $mform->addElement('text', 'injectedtext', get_string('extendform', 'tool_loginhooktester'));
+    $mform->setType('injectedtext',  PARAM_TEXT);
 }
 
 function tool_loginhooktester_extend_forgot_password_form($mform) {
     // Inject text element to test validation
     $mform->addElement('header', 'searchbyusername', '', '');
     $mform->addElement('text', 'injectedtext', get_string('extendform', 'tool_loginhooktester'),'size="20"');
+    $mform->setType('injectedtext',  PARAM_TEXT);
 }
 
 function tool_loginhooktester_extend_set_password_form($mform, $user) {
@@ -45,11 +47,13 @@ function tool_loginhooktester_extend_set_password_form($mform, $user) {
 
     // Inject text element to test validation
     $mform->addElement('text', 'injectedtext', get_string('extendform', 'tool_loginhooktester'));
+    $mform->setType('injectedtext',  PARAM_TEXT);
 }
 
 function tool_loginhooktester_extend_signup_form($mform) {
     // Inject text element to test validation
     $mform->addElement('text', 'injectedtext', get_string('extendform', 'tool_loginhooktester'));
+    $mform->setType('injectedtext',  PARAM_TEXT);
 }
 
 // ========================================VALIDATION HOOKS=========================================
