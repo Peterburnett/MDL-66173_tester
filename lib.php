@@ -26,12 +26,14 @@ defined('MOODLE_INTERNAL') || die;
 // ========================================FORM HOOKS===============================================
 
 function tool_loginhooktester_extend_change_password_form($mform, $user) {
+    
     // Inject static text of the username passed to it
     $mform->addElement('static', 'injectedstatic', $user->username);
 
     // Inject text element to test validation
     $mform->addElement('text', 'injectedtext', get_string('extendform', 'tool_loginhooktester'));
     $mform->setType('injectedtext',  PARAM_TEXT);
+    debugging('extendform');
 }
 
 function tool_loginhooktester_extend_forgot_password_form($mform) {
@@ -39,6 +41,8 @@ function tool_loginhooktester_extend_forgot_password_form($mform) {
     $mform->addElement('header', 'searchbyusername', '', '');
     $mform->addElement('text', 'injectedtext', get_string('extendform', 'tool_loginhooktester'),'size="20"');
     $mform->setType('injectedtext',  PARAM_TEXT);
+    debugging('extendform');
+    error_log('forgotinjection');
 }
 
 function tool_loginhooktester_extend_set_password_form($mform, $user) {
@@ -48,17 +52,23 @@ function tool_loginhooktester_extend_set_password_form($mform, $user) {
     // Inject text element to test validation
     $mform->addElement('text', 'injectedtext', get_string('extendform', 'tool_loginhooktester'));
     $mform->setType('injectedtext',  PARAM_TEXT);
+    debugging('extendform');
+
 }
 
 function tool_loginhooktester_extend_signup_form($mform) {
     // Inject text element to test validation
     $mform->addElement('text', 'injectedtext', get_string('extendform', 'tool_loginhooktester'));
     $mform->setType('injectedtext',  PARAM_TEXT);
+    debugging('extendform');
+    error_log('signupinjection');
 }
 
 // ========================================VALIDATION HOOKS=========================================
 
-function tool_loginhooktester_extend_change_password_validation($data, $errors, $user) {
+function tool_loginhooktester_validate_extend_change_password_form($data, $user) {
+    $errors = array();
+    debugging('extendvalidation');
     if ($data['injectedtext'] != 'test') { 
         $errors['injectedtext'] = ('Input: '.$data['injectedtext'].', Username: '.$user->username);
         return $errors;
@@ -67,7 +77,10 @@ function tool_loginhooktester_extend_change_password_validation($data, $errors, 
     }
 }
 
-function tool_loginhooktester_extend_forgot_password_validation($data, $errors) {
+function tool_loginhooktester_validate_extend_forgot_password_form($data) {
+    $errors = array();
+    error_log('forgotvalidate');
+    debugging('extendvalidation');
     if ($data['injectedtext'] != 'test') { 
         $errors['injectedtext'] = ('Input: '.$data['injectedtext']);
         return $errors;
@@ -76,7 +89,9 @@ function tool_loginhooktester_extend_forgot_password_validation($data, $errors) 
     }
 }
 
-function tool_loginhooktester_extend_set_password_validation($data, $errors, $user) {
+function tool_loginhooktester_validate_extend_set_password_form($data, $user) {
+    $errors = array();
+    debugging('extendvalidation');
     if ($data['injectedtext'] != 'test') { 
         $errors['injectedtext'] = ('Input: '.$data['injectedtext'].', Username: '.$user->username);
         return $errors;
@@ -85,7 +100,10 @@ function tool_loginhooktester_extend_set_password_validation($data, $errors, $us
     }
 }
 
-function tool_loginhooktester_extend_signup_validation($data, $errors) {
+function tool_loginhooktester_validate_extend_signup_form($data) {
+    $errors = array();
+    error_log('signupvalidate');
+    debugging('extendvalidation');
     if ($data['injectedtext'] != 'test') { 
         $errors['injectedtext'] = ('Input: '.$data['injectedtext']);
         return $errors;
@@ -95,22 +113,28 @@ function tool_loginhooktester_extend_signup_validation($data, $errors) {
 }
 
 function tool_loginhooktester_post_change_password_requests($data) {
+    debugging('postrequest');
     $message = ('post_change_password_request - Input: '.$data->injectedtext);
     echo "<script type='text/javascript'>alert('$message');</script>";
 }
 
 function tool_loginhooktester_post_set_password_requests($data) {
+    debugging('postrequest');
     $message = ('post_set_password_request - Input: '.$data->injectedtext);
     echo "<script type='text/javascript'>alert('$message');</script>";
     die;
 }
 
 function tool_loginhooktester_post_forgot_password_requests($data) {
+    debugging('postrequest');
+    error_log('forgotrequest');
     $message = ('post_forgot_password_request - Input: '.$data->injectedtext);
     echo "<script type='text/javascript'>alert('$message');</script>";
 }
 
 function tool_loginhooktester_post_signup_requests($data) {
+    debugging('postrequest');
+    error_log('signuprequest');
     $message = ('post_signup_request - Input: '.$data->injectedtext);
     echo "<script type='text/javascript'>alert('$message');</script>";
 }
