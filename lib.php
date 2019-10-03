@@ -42,7 +42,6 @@ function tool_loginhooktester_extend_forgot_password_form($mform) {
     $mform->addElement('text', 'injectedtext', get_string('extendform', 'tool_loginhooktester'),'size="20"');
     $mform->setType('injectedtext',  PARAM_TEXT);
     debugging('extendform');
-    error_log('forgotinjection');
 }
 
 function tool_loginhooktester_extend_set_password_form($mform, $user) {
@@ -53,7 +52,6 @@ function tool_loginhooktester_extend_set_password_form($mform, $user) {
     $mform->addElement('text', 'injectedtext', get_string('extendform', 'tool_loginhooktester'));
     $mform->setType('injectedtext',  PARAM_TEXT);
     debugging('extendform');
-
 }
 
 function tool_loginhooktester_extend_signup_form($mform) {
@@ -61,7 +59,6 @@ function tool_loginhooktester_extend_signup_form($mform) {
     $mform->addElement('text', 'injectedtext', get_string('extendform', 'tool_loginhooktester'));
     $mform->setType('injectedtext',  PARAM_TEXT);
     debugging('extendform');
-    error_log('signupinjection');
 }
 
 // ========================================VALIDATION HOOKS=========================================
@@ -79,7 +76,6 @@ function tool_loginhooktester_validate_extend_change_password_form($data, $user)
 
 function tool_loginhooktester_validate_extend_forgot_password_form($data) {
     $errors = array();
-    error_log('forgotvalidate');
     debugging('extendvalidation');
     if ($data['injectedtext'] != 'test') { 
         $errors['injectedtext'] = ('Input: '.$data['injectedtext']);
@@ -102,7 +98,6 @@ function tool_loginhooktester_validate_extend_set_password_form($data, $user) {
 
 function tool_loginhooktester_validate_extend_signup_form($data) {
     $errors = array();
-    error_log('signupvalidate');
     debugging('extendvalidation');
     if ($data['injectedtext'] != 'test') { 
         $errors['injectedtext'] = ('Input: '.$data['injectedtext']);
@@ -127,14 +122,12 @@ function tool_loginhooktester_post_set_password_requests($data) {
 
 function tool_loginhooktester_post_forgot_password_requests($data) {
     debugging('postrequest');
-    error_log('forgotrequest');
     $message = ('post_forgot_password_request - Input: '.$data->injectedtext);
     echo "<script type='text/javascript'>alert('$message');</script>";
 }
 
 function tool_loginhooktester_post_signup_requests($data) {
     debugging('postrequest');
-    error_log('signuprequest');
     $message = ('post_signup_request - Input: '.$data->injectedtext);
     echo "<script type='text/javascript'>alert('$message');</script>";
 }
